@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Finance Manager: Pending Tickets</title>
+<link rel="stylesheet" href="LoginC.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+	integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+	crossorigin="anonymous">
+<link rel="shortcut icon" href="pega.ico" />
+<title>Pending Tickets</title>
+</head>
+
+<body>
+		<div class="container-full">
+		<!-- Carousel Properties -->
+		<div id="carouselExampleCaptions" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-interval="3000">
+					<img
+						src="https://www.eletimes.com/wp-content/uploads/2017/02/01_pega_logo.jpg"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor">PEGA IS THE FUTURE</h1>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img
+						src="https://www.salestechstar.com/wp-content/uploads/2019/07/Pega-Named-a-Visionary-in-Gartners-Magic-Quadrant-for-Robotic-Process-Automation-Software1.jpg"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor">Everything is better with PEGA</h1>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img src="http://itnewsbuzz.com/wp-content/uploads/2019/06/Pega-presents-Real-Time-AI-Connectors-for-Pega-AI-Software.jpg"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor">PEGA FOR A BETTER BUSINESS</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	<div class="pos-f-t">
+		<div class="collapse" id="navbarToggleExternalContent">
+			<div class="bg-dark p-4">
+				<h5 class="text-white h4">Pega Employee Reimbursement System</h5>
+				<span class="text-muted">Finance Manager Account</span>
+				<table class="table table-striped table-dark">
+					<thead>
+						<tr>
+							<th scope="col" id="dashBoard"><a
+								href="http://localhost:9001/Project1Sadie/DashboardS.html">Main
+									Page</a></th>
+							<th scope="col" id=""><a href="">do something</a></th>
+							<th scope="col" id="viewAllS"><a
+								href="http://localhost:9001/Project1Sadie/PastReimbS.html">View
+									Past Reimbursements</a></th>
+							<th scope="col" id="viewPendingS"><a
+								href="http://localhost:9001/Project1Sadie/PendingS.html">View
+									Pending Reimbursements</a></th>
+							<th scope="col" id="viewInfoS"><a
+								href="http://localhost:9001/Project1Sadie/InfoS.html">Account
+									Information</a></th>
+							<th scope="col" id="logOut"><a href="">Logout</a></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<nav class="navbar navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarToggleExternalContent"
+				aria-controls="navbarToggleExternalContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</nav>
+	</div>
+
+	<h1 id="titleId">Pending Tickets</h1>
+
+	<div class="info">
+		<table class="table table-striped table-dark">
+			<thead>
+				<tr>
+					<th scope="col">Submission Date</th>
+					<th scope="col">ID #</th>
+					<th scope="col">Subject</th>
+					<th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<h3 id="submissionDate"></h3>
+					</td>
+					<td>
+						<h3 id="ticketNumber"></h3>
+					</td>
+					<td>
+						<h3 id="subjectOfTicket"></h3>
+					</td>
+					<td>
+						<h3 id="ticketDescription"></h3>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer>
+		<div id="footer">
+			<h5 id="footerStyle">&copy; 2019 Pega Employee Reimbursement
+				System</h5>
+		</div>
+	</footer>
+	<script type="text/javascript" src="DashboardS.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"
+		integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
+		crossorigin="anonymous"></script>
+</body>
+</html>

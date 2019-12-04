@@ -1,0 +1,50 @@
+@charset "ISO-8859-1";
+
+#changeWidthAndHeight {
+	height: 40vh;
+}
+#changeWidthAndHeightD {
+	height: 20vh;
+	width : 20vh;
+}
+
+body {
+	background-image:
+		url(https://files.slack.com/files-pri/TPWU6NH9V-FR6H685TJ/pegalogo.png);
+}
+
+.needs-validation {
+	margin-left: 35%;
+}
+
+.card {
+	width: 30vh;
+	height: 30vh;
+	background-color: #2B3856;
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	margin-left: 30vh;
+}
+
+#createA{
+		margin-left: 30vh;
+}
+
+#footerStyle {
+	color: white;
+	background-color: #2B3856;
+	font-size: 2vmin;
+}
+
+.info {
+	background-color: #2B3856;
+}
+
+#titleId {
+	background-color: #2B3856;
+	color: white;
+}
+
+.row{
+	margin-left: 30vh;
+}
