@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.controller.HomeController;
 import com.example.controller.RequestHelper;
 
 public class TestServlets extends HttpServlet {
@@ -29,16 +30,14 @@ public class TestServlets extends HttpServlet {
 			out.println("alert('User or email has to be unique');");
 			out.println("location='/Project1Sadie/create.html';");
 			out.println("</script>");
-		} else if(targetURL.equals("invalidLogin")) {
+		} else if (targetURL.equals("invalidLogin")) {
 			out.println("<script type=\"text/javascript\">");
 			out.println("alert('Username or password incorrect');");
 			out.println("location='/Project1Sadie/Login.html';");
 			out.println("</script>");
-	
-		}
-		else {
-			req.getRequestDispatcher(targetURL).forward(req, res);
+
+		} else {
+			req.getRequestDispatcher(targetURL).forward(req, res);	
 		}
 	}
-
 }

@@ -141,7 +141,6 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return user;
 	}
 
