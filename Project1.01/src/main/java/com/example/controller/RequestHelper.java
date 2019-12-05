@@ -20,6 +20,10 @@ public class RequestHelper {
 			return RegisterController.Register(request);
 		case "/Project1Sadie/Home.do":
 			return HomeController.Home(request, response);
+		case "/Project1Sadie/Update.do":
+			return ProfileController.Update(request);
+		case "/Project1Sadie/Submit.do":
+			return SubmitController.Submit(request);
 		default:
 			return "/Login.html";
 			//if all else fails this will load up the html login page			

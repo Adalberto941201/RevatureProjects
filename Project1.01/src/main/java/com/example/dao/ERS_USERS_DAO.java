@@ -11,7 +11,7 @@ public interface ERS_USERS_DAO {
 	public ERS_USERS selectByUsername(String USER_USERNAME);
 	public ERS_USERS selectByPassword(String USER_PASSWORD);
 	public List<ERS_USERS> selectAllUsers();
-	public int updateUserById(ERS_USERS user);
+	public int updateUser(ERS_USERS user);
 	public boolean isUsernameUnique(String username);
 
 	

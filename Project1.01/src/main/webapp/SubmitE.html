@@ -86,41 +86,34 @@
 	</div>
 
 	<h1 id="titleId">Ticket Submission</h1>
+	<div class="container-full">
 
-	<div>
-		<h5>
-			<!--  			<span class="label label-success"> Ticket Reimbursment
-				Submission</span> <br /> <br />
-				-->
-			<h10>First Name:</h10>
-			<input type="text" id="fNameSubmit"
-				placeholder="Enter your first name" class="form-control" />
-			<h10>Last Name:</h10>
-			<input type="text" id="lNameSubmit"
-				placeholder="Enter your last name" class="form-control" />
-			<h10>Employee ID: </h10>
-			<input type="text" id="employeeIdSubmit"
-				placeholder="Enter your employee ID number" class="form-control" />
-			<h10>Amount:</h10>
-			<input type="text" id="amountSubmit" placeholder="Enter the amount"
-				class="form-control" />
-			<h10>Subject:</h10>
-			<input type="text" id="subjectSubmit" placeholder="Enter the subject"
-				class="form-control" />
-			<h10>Date of Receipt/Invoice:</h10>
-			<input type="text" id="dateSubmit"
-				placeholder="Enter the date money was spent" class="form-control" />
-
-			<form action="upload.php" method="post" enctype="multipart/form-data">
-				Select image to upload: <input type="file" name="fileToUpload"
+		<form method="POST" action="Submit.do"
+			style="width: 75vw; height: 50vh; margin: auto; background-color: #2B3856;"
+			class="needs-validation" validate>
+			<div>
+				<h3>Amount:</h3>
+				<input type="text" id="amount" name="amount" value="" placeholder="Enter amount spent"
+					class="form-control" />
+				<h3>Description:</h3>
+				<input type="text" id="description" name="description" value=""
+					placeholder="Enter 250max Description" class="form-control" />
+				<h3>Subject:</h3>
+				<input type="text" id="type" name="type" value=""
+					placeholder="Enter your employee ID number" class="form-control" />
+					
+		 	<h3>Select image to upload:</h3> <input type="file" name="fileToUpload"
 					id="fileToUpload"> <input type="submit"
-					value="Upload Image" name="submit">
+					value="Upload Image" name="submitImage">
 			</form>
-			<br>
-			<!-- automatically add configure the current date and time for submission purposes - maybe back end? -->
-			<input type="submit" id="ticketSubmit"
-				class="form-control btn btn-info" />
+			-->
+				<br> <input type="submit" id="ticketSubmit"
+					class="form-control btn btn-info" />
+			</div>
+		</form>
 	</div>
+	<br>
+	<br>
 	<footer>
 		<div id="footer">
 			<h5 id="footerStyle">&copy; 2019 Pega Employee Reimbursement
@@ -128,7 +121,7 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript" src="DashboardE.js"></script>
+	<script type="text/javascript" src="./js/Submit.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>

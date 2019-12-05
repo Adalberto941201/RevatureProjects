@@ -1,14 +1,13 @@
 package com.pega.models;
 
-
 import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Date;
 
 public class ERS_REIMBURSEMENT {
-	
+
 	private int REIMB_ID;
-	private int REIMB_AMOUNT;
+	private float REIMB_AMOUNT;
 	private Timestamp REIMB_SUBMITTED;
 	private Timestamp REIMB_RESOLVED;
 	private String REIMB_DESCRIPTION;
@@ -17,13 +16,13 @@ public class ERS_REIMBURSEMENT {
 	private int REIMB_RESOLVER_FK;
 	private int REIMB_STATUS_ID_FK;
 	private int REIMB_TYPE_ID_FK;
-	
-//	public ERS_REIMBURSEMENT() {
-//
-//	}
 
-	public ERS_REIMBURSEMENT(int rEIMB_ID, int rEIMB_AMOUNT, java.sql.Timestamp timestamp, java.sql.Timestamp timestamp2,
-			String rEIMB_DESCRIPTION, Blob rEIMB_RECEIPT, int rEIMB_AUTHOR_FK, int rEIMB_RESOLVER_FK,
+	public ERS_REIMBURSEMENT() {
+
+	}
+
+	public ERS_REIMBURSEMENT(int rEIMB_ID, int rEIMB_AMOUNT, java.sql.Timestamp timestamp,
+			java.sql.Timestamp timestamp2, String rEIMB_DESCRIPTION, int rEIMB_AUTHOR_FK, int rEIMB_RESOLVER_FK,
 			int rEIMB_STATUS_ID_FK, int rEIMB_TYPE_ID_FK) {
 		super();
 		REIMB_ID = rEIMB_ID;
@@ -31,9 +30,19 @@ public class ERS_REIMBURSEMENT {
 		REIMB_SUBMITTED = timestamp;
 		REIMB_RESOLVED = timestamp2;
 		REIMB_DESCRIPTION = rEIMB_DESCRIPTION;
-		REIMB_RECEIPT = rEIMB_RECEIPT;
+		// REIMB_RECEIPT = rEIMB_RECEIPT;
 		REIMB_AUTHOR_FK = rEIMB_AUTHOR_FK;
 		REIMB_RESOLVER_FK = rEIMB_RESOLVER_FK;
+		REIMB_STATUS_ID_FK = rEIMB_STATUS_ID_FK;
+		REIMB_TYPE_ID_FK = rEIMB_TYPE_ID_FK;
+	}
+
+	public ERS_REIMBURSEMENT(float rEIMB_AMOUNT, String rEIMB_DESCRIPTION, int rEIMB_AUTHOR_FK, int rEIMB_STATUS_ID_FK,
+			int rEIMB_TYPE_ID_FK) {
+		super();
+		REIMB_AMOUNT = rEIMB_AMOUNT;
+		REIMB_DESCRIPTION = rEIMB_DESCRIPTION;
+		REIMB_AUTHOR_FK = rEIMB_AUTHOR_FK;
 		REIMB_STATUS_ID_FK = rEIMB_STATUS_ID_FK;
 		REIMB_TYPE_ID_FK = rEIMB_TYPE_ID_FK;
 	}
@@ -46,7 +55,7 @@ public class ERS_REIMBURSEMENT {
 		REIMB_ID = rEIMB_ID;
 	}
 
-	public int getREIMB_AMOUNT() {
+	public float getREIMB_AMOUNT() {
 		return REIMB_AMOUNT;
 	}
 
@@ -117,7 +126,5 @@ public class ERS_REIMBURSEMENT {
 	public void setREIMB_TYPE_ID_FK(int rEIMB_TYPE_ID_FK) {
 		REIMB_TYPE_ID_FK = rEIMB_TYPE_ID_FK;
 	}
-	
-	
-	
+
 }

@@ -169,28 +169,22 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 	}
 
 	@Override
-	public int updateUserById(ERS_USERS user) {
-
+	public int updateUser(ERS_USERS user) {
+		System.out.println("in update  dao");
+		System.out.println(user);
 		try (Connection con = DriverManager.getConnection(Url, Username, Password)) {
-
 			PreparedStatement ps = con.prepareStatement(
-					"UPDATE ERS_USERS ERS_USERNAME=?, ERS_PASSWORD=?, USER_FIRST_NAME=?, USER_LAST_NAME=?, USER_EMAIL=?, USER_ROLE_ID_FK=?, WHERE ERS_USERS_ID=? ");
-
-			ps.setInt(1, user.getERS_USERS_ID());
-			ps.setString(2, user.getERS_USERNAME());
-			ps.setString(3, user.getERS_PASSWORD());
-			ps.setString(4, user.getUSER_FIRST_NAME());
-			ps.setString(5, user.getUSER_LAST_NAME());
-			ps.setString(6, user.getUSER_EMAIL());
-			ps.setInt(7, user.getUSER_ROLE_ID_FK());
-
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				user = new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
-						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
-						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK"));
-			}
+					"UPDATE ERS_USERS SET ERS_USERNAME=?, ERS_PASSWORD=?, USER_FIRST_NAME=?, USER_LAST_NAME=?, USER_EMAIL=?, USER_ROLE_ID_FK=? WHERE ERS_USERS_ID=?");
+			System.out.println("inside update");
+			ps.setInt(7, user.getERS_USERS_ID());
+			ps.setString(1, user.getERS_USERNAME());
+			ps.setString(2, user.getERS_PASSWORD());
+			ps.setString(3, user.getUSER_FIRST_NAME());
+			ps.setString(4, user.getUSER_LAST_NAME());
+			ps.setString(5, user.getUSER_EMAIL());
+			ps.setInt(6, user.getUSER_ROLE_ID_FK());
+			System.out.println("made it beofre execute");
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

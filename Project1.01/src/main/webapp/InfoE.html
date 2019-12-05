@@ -102,29 +102,91 @@
 			<tbody>
 				<tr>
 					<td>
-						<h3 id="employeeId"></h3>
+						<h3 id="employeeId" name="employeeId"></h3>
 					</td>
 					<td>
-						<h3 id="fName"></h3>
+						<h3 id="fName" name="fName"></h3>
 					</td>
 					<td>
-						<h3 id="lName"></h3>
+						<h3 id="lName" name="lName"></h3>
 					</td>
 					<td>
-						<h3 id="username"></h3>
+						<h3 id="username" name="username"></h3>
 					</td>
 					<td>
-						<h3 id="password"></h3>
+						<h3 id="password" name="password"></h3>
 					</td>
 					<td>
-						<h3 id="email"></h3>
+						<h3 id="emailE" name="email"></h3>
 					</td>
 					<td>
-						<h3 id="roleId"></h3>
+						<h3 id="roleId" name="roleId"></h3>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+	</div>
+
+	<div class="container-full">
+		<div>
+			<h1
+				style="width: 75vw; height: 10vh; margin: auto; background-color: #2B3856; text-align: center">
+				<font color="white">Update Account Information</font>
+			</h1>
+		</div>
+		<form method="POST" action=Update.do id="updateAccount"
+			style="width: 75vw; height: 10vh; margin: auto; background-color: #2B3856;"
+			class="needs-validation" validate>
+			<div class="form-group col-md-7" id="createA"
+				style="text-align: center">
+				<label style="color: white" for="inputEmail4">Email</label> <input
+					type="email" class="form-control" id="inputEmail4" name="email">
+				<button type="submit" class="btn btn-primary" id="updateA"
+					value="Register">Confirm Email</button>
+			</div>
+		</form>
+
+		<form method="POST" action=Update.do id="updateAccount"
+			style="width: 75vw; height: 10vh; margin: auto; background-color: #2B3856;"
+			class="needs-validation" validate>
+			<div class="form-group col-md-7" id="createA"
+				style="text-align: center">
+				<label style="color: white" for="inputPassword4">Password</label> <input
+					type="password" class="form-control" id="inputPassword4"
+					name="password">
+				<button type="submit" class="btn btn-primary" id="updateA"
+					value="Register">Confirm Password</button>
+			</div>
+		</form>
+
+		<form method="POST" action=Update.do id="updateAccount"
+			style="width: 75vw; height: 10vh; margin: auto; background-color: #2B3856;"
+			class="needs-validation" validate>
+			<div class="form-group col-md-7" id="createA"
+				style="text-align: center">
+				<label style="color: white" for="inputFirstname4">First Name</label>
+				<input type="text" class="form-control" id="inputFirstname4"
+					name="fName">
+				<button type="submit" class="btn btn-primary" id="updateA"
+					value="Register">Confirm First Name</button>
+			</div>
+		</form>
+
+		<form method="POST" action=Update.do id="updateAccount"
+			style="width: 75vw; height: 10vh; margin: auto; background-color: #2B3856;"
+			class="needs-validation" validate>
+			<div class="form-group col-md-7" id="createA"
+				style="text-align: center">
+					<span> <label style="color: white" for="inputLastname4">Last
+							Name</label> <input type="text" class="form-control" id="inputLastname4"
+						name="fName">
+					</span> <span>
+						<button type="submit" class="btn btn-primary" id="updateA"
+							value="Register">Confirm Last Name</button>
+					</span>
+			</div>
+		</form>
+		<br> <br>
 	</div>
 	<footer>
 		<div id="footer">

@@ -12,6 +12,9 @@ body {
 	background-image:
 		url(https://files.slack.com/files-pri/TPWU6NH9V-FR6H685TJ/pegalogo.png);
 }
+h3{
+	color : white;
+}
 
 .needs-validation {
 	margin-left: 35%;
