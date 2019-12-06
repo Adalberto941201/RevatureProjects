@@ -54,87 +54,88 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 	}
 
 	@Override
-	public ERS_REIMBURSEMENT selectById(int ERS_USER_ID) {
-
+	public ERS_REIMBURSEMENT selectById(int ERS_REIMB_ID) {
+		System.out.println("ind the dao");
 		ERS_REIMBURSEMENT reimb = null;
-
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
-
+			System.out.println("inside the dao try");
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_ID=?");
+			ps.setInt(1, ERS_REIMB_ID);
 			ResultSet rs = ps.executeQuery();
-
+			System.out.println("before the while loo of dao");
 			while (rs.next()) {
+				System.out.println("in the while loop of dao");
 				reimb = new ERS_REIMBURSEMENT(rs.getInt("REIMB_ID"), rs.getInt("REIMB_AMOUNT"),
 						rs.getTimestamp("REIMB_SUBMITTED"), rs.getTimestamp("REIMB_REOLVED"),
 						rs.getString("REIMB_DESCRIPTION"), rs.getInt("REIMB_AUTHOR_FK"), rs.getInt("REIMB_RESOLVER_FK"),
 						rs.getInt("REIMB_STATUS_ID_FK"), rs.getInt("REIMB_TYPE_ID_FK"));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("in dao" + reimb);
 		return reimb;
 	}
 
 	@Override
 	public List<ERS_REIMBURSEMENT> selectAllReimbs() {
-
 		List<ERS_REIMBURSEMENT> reimbs = new ArrayList<ERS_REIMBURSEMENT>();
-
+		System.out.println("im before the try get connection");
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
-
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_REIMBURSMENT");
-
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT");
 			ResultSet rs = ps.executeQuery();
-
 			while (rs.next()) {
 				reimbs.add(new ERS_REIMBURSEMENT(rs.getInt("REIMB_ID"), rs.getInt("REIMB_AMOUNT"),
 						rs.getTimestamp("REIMB_SUBMITTED"), rs.getTimestamp("REIMB_REOLVED"),
 						rs.getString("REIMB_DESCRIPTION"), rs.getInt("REIMB_AUTHOR_FK"), rs.getInt("REIMB_RESOLVER_FK"),
 						rs.getInt("REIMB_STATUS_ID_FK"), rs.getInt("REIMB_TYPE_ID_FK")));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return reimbs;
 	}
 
 	@Override
-	public int updateUserById(ERS_REIMBURSEMENT reimb) {
-
+	public int updateUserById(int id, int apid, int ResolverID) {
+		System.out.println("made it in update by user reimbursmenet");
+		System.out.println("id  " + id + "apid" + apid + "resolverId" + ResolverID );
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
-
 			PreparedStatement ps = con.prepareStatement(
-					"UPDATE ERS_REIMBURSEMENT REIMB_AMOUNT=?, REIMB_SUBMITTED=?, REIMB_RESOLVED=?, REIMB_DESCRIPTION=?, REIMB_RECEIPT=?, REIMB_AUTHOR_FK=?, REIMB_RESLOVER_FK, REIMB_STATUS_ID_FK, REIMB_TYPE_ID_FK,  WHERE REIMB_ID=? ");
-
-			ps.setInt(1, reimb.getREIMB_ID());
-			ps.setFloat(2, reimb.getREIMB_AMOUNT());
-			ps.setTimestamp(3, reimb.getREIMB_SUBMITTED());
-			ps.setTimestamp(4, reimb.getREIMB_RESOLVED());
-			ps.setString(5, reimb.getREIMB_DESCRIPTION());
-			ps.setBlob(6, reimb.getREIMB_RECEIPT());
-			ps.setInt(7, reimb.getREIMB_AUTHOR_FK());
-			ps.setInt(8, reimb.getREIMB_RESOLVER_FK());
-			ps.setInt(9, reimb.getREIMB_STATUS_ID_FK());
-			ps.setInt(10, reimb.getREIMB_TYPE_ID_FK());
-
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				reimb = new ERS_REIMBURSEMENT(rs.getInt("REIMB_ID"), rs.getInt("REIMB_AMOUNT"),
-						rs.getTimestamp("REIMB_SUBMITTED"), rs.getTimestamp("REIMB_REOLVED"),
-						rs.getString("REIMB_DESCRIPTION"), rs.getInt("REIMB_AUTHOR_FK"), rs.getInt("REIMB_RESOLVER_FK"),
-						rs.getInt("REIMB_STATUS_ID_FK"), rs.getInt("REIMB_TYPE_ID_FK"));
-			}
-
+					"UPDATE ERS_REIMBURSEMENT SET REIMB_RESOLVER_FK=?, REIMB_STATUS_ID_FK=? WHERE REIMB_ID=? ");
+			System.out.println("after prepared stament");
+			ps.setInt(2, apid);
+			ps.setInt(1, ResolverID);
+			ps.setInt(3, id);
+			ps.executeUpdate();
+			System.out.println("after execute");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return 0;
 	}
 
+	@Override
+	public List<ERS_REIMBURSEMENT> selectPendingReimbs() {
+		List<ERS_REIMBURSEMENT> reimbs = new ArrayList<ERS_REIMBURSEMENT>();
+		System.out.println("im before the try get connection");
+		try (Connection con = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID_FK=0");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				reimbs.add(new ERS_REIMBURSEMENT(rs.getInt("REIMB_ID"), rs.getInt("REIMB_AMOUNT"),
+						rs.getTimestamp("REIMB_SUBMITTED"), rs.getTimestamp("REIMB_REOLVED"),
+						rs.getString("REIMB_DESCRIPTION"), rs.getInt("REIMB_AUTHOR_FK"), rs.getInt("REIMB_RESOLVER_FK"),
+						rs.getInt("REIMB_STATUS_ID_FK"), rs.getInt("REIMB_TYPE_ID_FK")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(reimbs);
+		return reimbs;
+	}
+
+	@Override
+	public void writeBlob() {
+	}
 }

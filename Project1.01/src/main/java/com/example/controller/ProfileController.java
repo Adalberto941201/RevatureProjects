@@ -39,7 +39,7 @@ public class ProfileController {
 			return "/InfoE.html";
 		} else {
 			System.out.println("hello in profile controller fm");
-			return "/InfoS.html";
+			return "/InfoSP.html";
 		}
 	}
 }

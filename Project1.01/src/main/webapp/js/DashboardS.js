@@ -7,13 +7,13 @@
 let buttonOne = document.getElementById('logOut');
 buttonOne.addEventListener('click', logOutFunc);
 
-function logOutFunc() {
-	if (confirm('Are you sure you want to logout? You will be redirected to the main login page.')) {
-		window.location.href = "http://localhost:9001/Project1Sadie/Login.html";
-	} else {
-		alert('you chose to stay logged in');
-	}
-}
+//function logOutFunc() {
+//	if (confirm('Are you sure you want to logout? You will be redirected to the main login page.')) {
+//		window.location.href = "http://localhost:9001/Project1Sadie/Login.html";
+//	} else {
+//		alert('you chose to stay logged in');
+//	}
+//}
 
 window.onload = function() {
 	console.log('in this onload')
