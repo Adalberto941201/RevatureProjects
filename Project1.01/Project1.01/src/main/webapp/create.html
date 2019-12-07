@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Pega Reimbursement: Creating Account</title>
+<style>
+body {
+	background-image:
+		url(https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/pwnwwmtja89vs7rycbvn);
+}
+</style>
+<link rel="stylesheet" href="LoginC.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+	integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+	crossorigin="anonymous">
+<link rel="shortcut icon" href="pega.ico" />
+</head>
+<body>
+	<div class="container-full">
+		<!-- Carousel Properties -->
+		<div id="carouselExampleCaptions" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active" data-interval="3000">
+					<img
+						src="https://www.eletimes.com/wp-content/uploads/2017/02/01_pega_logo.jpg"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor"></h1>
+					</div>
+				</div>
+				<div class="carousel-item" data-interval="3000">
+					<img
+						src="data:image/png;base64,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"
+						class="d-block w-100" alt="..." id="changeWidthAndHeight">
+					<div class="carousel-caption d-none d-md-block">
+						<h1 class="changeColor"></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-full">
+		<form method="POST" action="Register.do" id="createAccount"
+			style="width: 65%; height: 65vh; margin: auto; background-color: #2B3856;"
+			class="needs-validation" validate>
+			<div class="form-group col-md-6" id="createA">
+				<label style="color: white" for="inputEmail4">Email</label> <input
+					type="email" class="form-control" id="inputEmail4" name="email">
+			</div>
+			<div class="form-group col-md-6" id="createA">
+				<label style="color: white" for="inputUsername4">Username</label> <input
+					type="username" class="form-control" id="inputUsername4"
+					name="username">
+			</div>
+			<div class="form-group col-md-6" id="createA">
+				<label style="color: white" for="inputFirstname4">First Name</label>
+				<input type="text" class="form-control" id="inputFirstname4"
+					name="fName">
+			</div>
+			<div class="form-group col-md-6" id="createA">
+				<label style="color: white" for="inputLastname4">Last Name</label>
+				<input type="text" class="form-control" id="inputLastname4"
+					name="lName">
+			</div>
+			<div class="form-group col-md-6" id="createA">
+				<label style="color: white">User Role</label> <input type="radio"
+					name="userRole" value="Employee"> Employee <br> <input
+					type="radio" name="userRole" value="FinanceManager">
+				Finance Manager <br>
+			</div>
+			<div class="form-group">
+				<div class="form-check" id="createA">
+					<input class="form-check-input" type="checkbox" id="gridCheck">
+					<label style="color: white" class="form-check-label"
+						for="gridCheck"> I am not a robot</label>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary" id="createA"
+				value="Register">Create Account</button>
+		</form>
+	</div>
+	<div id="footer">
+		<h5 id="footerStyle">&copy; 2019 Pega Employee Reimbursement
+			System</h5>
+	</div>
+	<script type="text/javascript" src="LoginJ.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"
+		integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
+		crossorigin="anonymous"></script>
+</body>
+</html>
