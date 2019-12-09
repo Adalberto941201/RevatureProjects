@@ -8,7 +8,7 @@ import com.pega.models.ERS_USERS;
 public class ticketUpdateController {
 	public static String update(HttpServletRequest req) {
 		System.out.println("////////////////////");
-				System.out.println("in ticket update controller");
+		System.out.println("in ticket update controller");
 		System.out.println(req.getParameter("ticketId"));
 		System.out.println(req.getParameter("manBtn"));
 		int id = Integer.valueOf(req.getParameter("ticketId"));
@@ -19,6 +19,7 @@ public class ticketUpdateController {
 		System.out.println("before entering dao");
 		ERS_REIMBURSEMENT_DAO_IMPL ersDaoImpl = new ERS_REIMBURSEMENT_DAO_IMPL();
 		ersDaoImpl.updateUserById(id, apid, ResId);
+		//loggy used in the DAO
 		System.out.println("updated dao");
 		return "/PendingS.html";
 	}

@@ -161,22 +161,30 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 
 			while (rs.next()) {
 				String passCheck = "";
-				try {
-					pEncryption.dcipher = Cipher.getInstance("DES");
-
-					pEncryption.dcipher.init(Cipher.DECRYPT_MODE, pEncryption.key);
-					System.out.println("this is password before decyption" + rs.getString("ERS_PASSWORD"));
-					passCheck = pEncryption.decrypt(rs.getString("ERS_PASSWORD"));
-					System.out.println("this is password after encyption" + passCheck);
-				} catch (Exception e) {
-					System.out.println("issue with password encryption");
-					e.printStackTrace();
-				}
+//				try {
+//					pEncryption.dcipher = Cipher.getInstance("DES");
+//
+////					pEncryption.dcipher.init(Cipher.DECRYPT_MODE, pEncryption.key);
+//					System.out.println("this is password before decyption" + rs.getString("ERS_PASSWORD"));
+//					passCheck = pEncryption.decrypt(rs.getString("ERS_PASSWORD"));
+//					System.out.println("this is password after encyption" + passCheck);
+//				} catch (Exception e) {
+//					System.out.println("issue with password encryption");
+//					e.printStackTrace();
+//				}
 				
 				System.out.println(passCheck);
 
+//				System.out.println("id" + rs.getInt("ERS_USERS_ID"));
+//				System.out.println("username" + rs.getString("ERS_USERNAME"));
+//				System.out.println("p" + rs.getString("ERS_PASSWORD"));
+//				System.out.println("fn" + rs.getString("USER_FIRST_NAME"));
+//				System.out.println("ln" + rs.getString("USER_LAST_NAME"));
+//				System.out.println("em" + rs.getString("USER_EMAIL"));
+//				System.out.println("ur" + rs.getInt("USER_ROLE_ID_FK"));
+
 				user.add(new ERS_USERS(rs.getInt("ERS_USERS_ID"), rs.getString("ERS_USERNAME"),
-						rs.getString(passCheck), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
+						rs.getString("ERS_PASSWORD"), rs.getString("USER_FIRST_NAME"), rs.getString("USER_LAST_NAME"),
 						rs.getString("USER_EMAIL"), rs.getInt("USER_ROLE_ID_FK")));
 			}
 
@@ -208,7 +216,6 @@ public class ERS_USERS_DAO_IMPL implements ERS_USERS_DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return 0;
 	}
 

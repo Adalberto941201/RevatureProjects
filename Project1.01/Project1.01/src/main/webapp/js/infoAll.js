@@ -21,6 +21,7 @@ window.onload = function() {
 	xhttp.send();
 	getAccountsInfo();
 }
+
 //let buttonOne = document.getElementById("btn");
 //buttonOne.addEventListener('click', getPastTicketInfo);
 
@@ -87,13 +88,13 @@ function setValues(accounts) {
 		var td5 = document.createElement('td');
 		var td6 = document.createElement('td');
 		var td7 = document.createElement('td');
-		var text1 = document.createTextNode(accounts[i].user_ROLE_ID_FK);
+		var text1 = document.createTextNode(accounts[i].ers_USERS_ID);
 		var text2 = document.createTextNode(accounts[i].user_FIRST_NAME);
 		var text3 = document.createTextNode(accounts[i].user_LAST_NAME);
 		var text4 = document.createTextNode(accounts[i].ers_USERNAME);
 		var text5 = document.createTextNode(accounts[i].ers_PASSWORD);
 		var text6 = document.createTextNode(accounts[i].user_EMAIL);
-		var text7 = document.createTextNode(accounts[i].ers_USERS_ID);
+		var text7 = document.createTextNode(accounts[i].user_ROLE_ID_FK);
 
 		td1.appendChild(text1);
 		td2.appendChild(text2);

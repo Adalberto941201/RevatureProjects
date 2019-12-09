@@ -26,12 +26,14 @@ public class SubmitController {
 		else if(type.equals("supplies")) {
 			typeN = 1;
 		}
+		System.out.println(typeN);
 		int employeeId = em.getERS_USERS_ID();
 		System.out.println("finished up to inserting");
 		ERS_REIMBURSEMENT emNew = new ERS_REIMBURSEMENT(amount, description, employeeId, 0, typeN);
 		ERS_REIMBURSEMENT_DAO_IMPL d = new ERS_REIMBURSEMENT_DAO_IMPL();
 		d.insertReimbursement(emNew);
 		System.out.println(emNew);
+		RequestHelper.loggy.info(em.getERS_USERNAME() + "  submitted a ticket");
 		return "/SubmitE.html";
 	}
 

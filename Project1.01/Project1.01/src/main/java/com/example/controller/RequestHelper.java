@@ -3,12 +3,18 @@ package com.example.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class RequestHelper {
-	/*
-	 * The idea behind the class is to route requests based on the URI that comes
-	 * along with the request
-	 */
+import org.apache.log4j.Logger;
 
+public class RequestHelper {
+	public final static Logger loggy = Logger.getLogger(RequestHelper.class.getName());
+	/*
+	 * used in:
+	 * login controller
+	 * register controllwr
+	 * update controller
+	 * submit controller
+	 * ticket update controller -> DAO REIMBS
+	 */
 	public static String process(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("REquest Helper URI" + request.getRequestURI());
 		switch (request.getRequestURI()) {

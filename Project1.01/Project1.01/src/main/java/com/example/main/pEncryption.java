@@ -1,12 +1,13 @@
 package com.example.main;
 
-import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import com.sun.mail.util.BASE64DecoderStream;
 import com.sun.mail.util.BASE64EncoderStream;
@@ -16,68 +17,39 @@ public class pEncryption {
 	public static Cipher ecipher;
 	public static Cipher dcipher;
 	public static SecretKey key;
+	public static boolean createdKey = false;
+	// create new key
+
 	static {
-		try {
-			key = KeyGenerator.getInstance("DES").generateKey();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (createdKey == false) {
+			try {
+				System.out.println("created key");
+				key = KeyGenerator.getInstance("DES").generateKey();
+			} catch (Exception e) {
+
+			} finally {
+				createdKey = true;
+			}
+		} else {
+			System.out.println("running key generation block again");
 		}
 	}
 
 	public static void main(String[] args) {
-
-		try {
-
-			// generate secret key using DES algorithm
-
-			ecipher = Cipher.getInstance("DES");
-			dcipher = Cipher.getInstance("DES");
-
-			// initialize the ciphers with the given key
-
-			ecipher.init(Cipher.ENCRYPT_MODE, key);
-
-			dcipher.init(Cipher.DECRYPT_MODE, key);
-
-			String encrypted = encrypt("This is a classified message!");
-
-			String decrypted = decrypt(encrypted);
-
-			System.out.println("encrypted" + encrypted);
-
-			System.out.println("Decrypted: " + decrypted);
-
-		} catch (NoSuchAlgorithmException e) {
-			System.out.println("No Such Algorithm:" + e.getMessage());
-			return;
-		} catch (NoSuchPaddingException e) {
-			System.out.println("No Such Padding:" + e.getMessage());
-			return;
-		} catch (InvalidKeyException e) {
-			System.out.println("Invalid Key:" + e.getMessage());
-			return;
-		}
 
 	}
 
 	public static String encrypt(String str) {
 
 		try {
-
-			// encode the string into a sequence of bytes using the named charset
-
-			// storing the result into a new byte array.
-
+			System.out.println("keyShow: " + key);
 			byte[] utf8 = str.getBytes("UTF8");
 
 			byte[] enc = ecipher.doFinal(utf8);
-
+			enc = BASE64EncoderStream.encode(enc);
 			// encode to base64
 
-			enc = BASE64EncoderStream.encode(enc);
-
 			return new String(enc);
-
 		}
 
 		catch (Exception e) {
@@ -95,7 +67,7 @@ public class pEncryption {
 		try {
 
 			// decode with base64 to get bytes
-
+			System.out.println("keyShow: " + key);
 			byte[] dec = BASE64DecoderStream.decode(str.getBytes());
 
 			byte[] utf8 = dcipher.doFinal(dec);

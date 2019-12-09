@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.controller.RequestHelper;
 import com.example.dao.ERS_REIMBURSEMENT_DAO;
 import com.pega.models.ERS_REIMBURSEMENT;
 import com.pega.models.ERS_USERS;
@@ -42,7 +43,7 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 			ps.setFloat(1, reimb.getREIMB_AMOUNT());
 			ps.setString(2, reimb.getREIMB_DESCRIPTION());
 			ps.setInt(3, reimb.getREIMB_AUTHOR_FK());
-			ps.setInt(4, reimb.getREIMB_STATUS_ID_FK());
+			ps.setInt(4, 0);
 			ps.setInt(5, reimb.getREIMB_TYPE_ID_FK());
 			System.out.println("before execte in insert dao ");
 			insertedReimbs = ps.executeUpdate();
@@ -97,7 +98,7 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 	}
 
 	@Override
-	public int updateUserById(int id, int apid, int ResolverID) {
+	public int  updateUserById(int id, int apid, int ResolverID) {
 		System.out.println("made it in update by user reimbursmenet");
 		System.out.println("id  " + id + "apid" + apid + "resolverId" + ResolverID );
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
@@ -109,6 +110,13 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 			ps.setInt(3, id);
 			ps.executeUpdate();
 			System.out.println("after execute");
+			String appDen = "";
+			if(apid ==1) {
+				appDen="Approved";
+			} else {
+				appDen="Denied";
+			}
+			RequestHelper.loggy.info("Ticket #"+ id+ "was updated to " + appDen + "by finance manager " + ResolverID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
