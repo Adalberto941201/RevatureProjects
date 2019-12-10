@@ -68,7 +68,10 @@
 							<th scope="col" id="viewInfoE"><a
 								href="http://localhost:9001/Project1Sadie/InfoE.html">Account
 									Information</a></th>
-							<th scope="col" id="logOut"><a href="">Logout</a></th>
+							<th scope="col" id="logOut"><form method="POST"
+									action="logout.do">
+									<button type="submit" value="Logout">Logout</button>
+								</form></th>
 						</tr>
 					</thead>
 				</table>
@@ -93,24 +96,23 @@
 			class="needs-validation" validate>
 			<div>
 				<h3>Amount:</h3>
-				<input type="text" id="amount" name="amount" value="" placeholder="Enter amount spent"
-					class="form-control" />
+				<input type="text" id="amount" name="amount" value=""
+					placeholder="Enter amount spent" class="form-control" />
 				<h3>Description:</h3>
 				<input type="text" id="description" name="description" value=""
 					placeholder="Enter 250max Description" class="form-control" />
 				<h3>Subject:</h3>
 				<input type="text" id="type" name="type" value=""
 					placeholder="Enter travel or supplies" class="form-control" />
-					
-		 	<h3>Select image to upload:</h3> <input type="file" name="fileToUpload"
+
+				<!--  	<h3>Select image to upload:</h3> <input type="file" name="fileToUpload"
 					id="fileToUpload"> <input type="submit"
-					value="Upload Image" name="submitImage">
-			</form>
-			-->
-				<br> <input type="submit" id="ticketSubmit"
-					class="form-control btn btn-info" />
-			</div>
+					value="Upload Image" name="submitImage">  -->
 		</form>
+		<br> <input type="submit" id="ticketSubmit"
+			class="form-control btn btn-info" />
+	</div>
+	</form>
 	</div>
 	<br>
 	<br>

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 public class RequestHelper {
-	public final static Logger loggy = Logger.getLogger(RequestHelper.class.getName());
+	//public final static Logger loggy = Logger.getLogger(RequestHelper.class);
 	/*
 	 * used in:
 	 * login controller
@@ -43,6 +43,8 @@ public class RequestHelper {
 			return AccountsHomeController.accountsGet(request, response);
 		case "/Project1Sadie/managerPendTicketGrab.do":
 			return ticketUpdateController.update(request);
+		case "/Project1Sadie/logout.do":
+			return LoginController.logout(request);
 		default:
 			return "/Login.html";
 		// if all else fails this will load up the html login page

@@ -68,7 +68,7 @@
 							<th scope="col" id="viewInfoS"><a
 								href="http://localhost:9001/Project1Sadie/InfoS.html">Account
 									Information</a></th>
-							<th scope="col" id="logOut"><a href="">Logout</a></th>
+							<th scope="col" id="logOut"><form method="POST" action="logout.do"><button type="submit" value="Logout">Logout</button></form></th>
 						</tr>
 					</thead>
 				</table>
@@ -86,17 +86,16 @@
 
 	<h1 id="titleId">Past Reimbursement Requests</h1>
 	<div class="form-group col-md-6" id="createA">
-		<form method="POST" action="pastTicket.do">
-			<label style="color: white">User Role</label> <input type="radio"
-				name="btn" value="showAll">Show All<br> <input
+		<form method="POST" action="pastTicket.do" style="background-color:#2B3856; width:65vw; height:15vh; color:white; text-align:center">
+			<input type="radio" name="btn" value="showAll">Show All<br> <input
 				type="radio" name="btn" value="showApproved">Show Approved<br>
 			<input type="radio" name="btn" value="showDenied">Show Denied<br>
-			<input type="text" name="showId" value="" placeholder="Show by ID"><br>
+			<input type="text" name="showId" value="" placeholder="Show by Author ID"><br>
 			<button id="btn23" type="submit"
 				class="btn btn-primary btn-lg btn-block">Choose</button>
 		</form>
 		<button id="btn2" type="submit"
-			class="btn btn-primary btn-lg btn-block">Show</button>
+			class="btn btn-primary btn-lg btn-block" style="background-color:#2B3856; width:65vw; height:1vh; color:white; text-align:center">Show</button>
 	</div>
 
 	<div id="tabletb"></div>

@@ -2,12 +2,16 @@ package com.example.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import com.example.dao.ERS_REIMBURSEMENT_DAO_IMPL;
 import com.example.dao.ERS_USERS_DAO_IMPL;
 import com.pega.models.ERS_REIMBURSEMENT;
 import com.pega.models.ERS_USERS;
 
 public class SubmitController {
+	public final static Logger loggy = Logger.getLogger(SubmitController.class);
+
 	public static String Submit(HttpServletRequest request) {
 		System.out.println("in submit controller");
 		ERS_USERS em = (ERS_USERS) request.getSession().getAttribute("user");
@@ -33,7 +37,7 @@ public class SubmitController {
 		ERS_REIMBURSEMENT_DAO_IMPL d = new ERS_REIMBURSEMENT_DAO_IMPL();
 		d.insertReimbursement(emNew);
 		System.out.println(emNew);
-		RequestHelper.loggy.info(em.getERS_USERNAME() + "  submitted a ticket");
+		loggy.info(em.getERS_USERNAME() + "  submitted a ticket");
 		return "/SubmitE.html";
 	}
 

@@ -2,22 +2,40 @@
  * 
  */
 
-let buttonTwo = document.getElementById('logOut');
-buttonTwo.addEventListener('click', logOutFunc);
-
-function logOutFunc() {
-	if (confirm('Are you sure you want to logout? You will be redirected to the main login page.')) {
-		document.getElementById("logOut").href = "http://localhost:9001/Project1Sadie/Login.html";
-		window.location.replace("Login.html");
-        // or
-        window.location.href = "/Login.html";
-	} else {
-		alert('you chose to stay logged in');
-	}
+// let buttonTwo = document.getElementById('logOut');
+// buttonTwo.addEventListener('click', logOutFunc);
+//
+// function logOutFunc() {
+// if (confirm('Are you sure you want to logout? You will be redirected to the
+// main login page.')) {
+// document.getElementById("logOut").href =
+// "http://localhost:9001/Project1Sadie/Login.html";
+// window.location.replace("Login.html");
+// // or
+// window.location.href = "/Login.html";
+// } else {
+// alert('you chose to stay logged in');
+// }
+// }
+let pastTicBtn = document.getElementById('btn2');
+if (pastTicBtn) {
+	console.log("added listener");
+	pastTicBtn.addEventListener('click', getPastTicketInfo());
 }
 
-let buttonOne = document.getElementById("btn");
-buttonOne.addEventListener('click', getPastTicketInfo);
+let pastTicBtnE = document.getElementById('btnE');
+if (pastTicBtnE) {
+	console.log("added listener for employee");
+	pastTicBtnE.addEventListener('click', setPastTicketInfo());
+}
+
+function setPastTicketInfo() {
+	let xhttps = new XMLHttpRequest();
+	xhttps.open("GET", 'http://localhost:9001/Project1Sadie/pastTicket.do',
+			true);
+	xhttps.send();
+	getPastTicketInfo();
+}
 
 function getPastTicketInfo() {
 	let xhttp = new XMLHttpRequest();
@@ -95,12 +113,12 @@ function setValues(pastTicket) {
 		var td9 = document.createElement('td');
 		var text1 = document.createTextNode(pastTicket[i].reimb_ID);
 		var text2 = document.createTextNode(pastTicket[i].reimb_AMOUNT);
-		var text3 = document.createTextNode(date.getMonth()+ "/" + date.getDay() + "/" + date.getFullYear());
-		var text4 = document.createTextNode(date2.getMonth()+ "/" + date2.getDay() + "/" + date2.getFullYear());
+		var text3 = document.createTextNode(new Date (pastTicket[i].reimb_SUBMITTED).toISOString());
+		var text4 = document.createTextNode(new Date (pastTicket[i].reimb_RESOLVED).toISOString());
 		var text5 = document.createTextNode(pastTicket[i].reimb_DESCRIPTION);
 		var text6 = document.createTextNode(pastTicket[i].reimb_AUTHOR_FK);
-		var text7 = document.createTextNode( pastTicket[i].reimb_RESOLVER_FK);
-		if (pastTicket[i].reimb_STATUS_ID_FK == 0) {
+		var text7 = document.createTextNode(pastTicket[i].reimb_RESOLVER_FK);
+		if (pastTicket[i].reimb_STATUS_ID_FK == 3) {
 			text8 = document.createTextNode("Pending");
 		} else if (pastTicket[i].reimb_STATUS_ID_FK == 1) {
 			text8 = document.createTextNode("Approved");
@@ -133,6 +151,6 @@ function setValues(pastTicket) {
 		tr.appendChild(td9);
 		table.appendChild(tr);
 	}
-	 document.getElementById("tabletb").append(table);
-	
+	document.getElementById("tabletb").append(table);
+
 }

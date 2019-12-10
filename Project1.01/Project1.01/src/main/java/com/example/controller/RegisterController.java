@@ -7,12 +7,15 @@ import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+
 import com.example.dao.ERS_USERS_DAO_IMPL;
 import com.example.main.Email;
 import com.example.main.pEncryption;
 import com.pega.models.ERS_USERS;
 
 public class RegisterController {
+	public final static Logger loggy = Logger.getLogger(RegisterController.class);
 
 	public static String Register(HttpServletRequest request) {
 		/* Unique attributes */
@@ -57,10 +60,10 @@ public class RegisterController {
 		if (d.isUsernameUnique(userN)) {
 			d.insertUser(em);
 			System.out.println(em);
-			RequestHelper.loggy.info(em.getERS_USERNAME() + " Created an account");
+			loggy.info(em.getERS_USERNAME() + " Created an account");
 			return "/Login.html";
 		} else {
-			RequestHelper.loggy.info("An account with an already existing username was attempted to register");
+			loggy.info("An account with an already existing username was attempted to register");
 			return "invalid"; // was not unique re-register
 		}
 	}

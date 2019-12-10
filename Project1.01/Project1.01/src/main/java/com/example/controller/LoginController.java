@@ -1,17 +1,16 @@
 package com.example.controller;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.Cipher;
-import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
 
 import com.example.dao.ERS_USERS_DAO_IMPL;
-import com.example.main.pEncryption;
 import com.pega.models.ERS_USERS;
 
 public class LoginController {
+	public final static Logger loggy = Logger.getLogger(LoginController.class);
 
 	public static String Login(HttpServletRequest req) {
 		String name = req.getParameter("username");
@@ -43,15 +42,23 @@ public class LoginController {
 		if (name.equals(em.getERS_USERNAME()) && type.equals(em.getERS_PASSWORD())) {
 			if (em.getUSER_ROLE_ID_FK() == 1) {
 				req.getSession().setAttribute("user", em);
-				RequestHelper.loggy.info(em.getERS_USERNAME() + " Logged in");
+				loggy.info(em.getERS_USERNAME() + " Logged in");
 				return "/DashboardE.html";
 			} else {
 				req.getSession().setAttribute("user", em);
-				RequestHelper.loggy.info(em.getERS_USERNAME() + " Logged in");
+				loggy.info(em.getERS_USERNAME() + " Logged in");
 				return "/DashboardS.html";
 			}
 		}
-		RequestHelper.loggy.info("An Attempt to login was made with the credentials: username-" + name + " password-" + type);
+		loggy.info("An Attempt to login was made with the credentials: username-" + name + " password-" + type);
 		return "invalidLogin";
+	}
+	public static String logout(HttpServletRequest req) {
+	   HttpSession session = req.getSession();
+		if(session.isNew()) {
+			session.invalidate();
+			session =req.getSession();
+		}
+		return "/Login.html";
 	}
 }

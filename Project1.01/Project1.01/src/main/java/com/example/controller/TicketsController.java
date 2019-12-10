@@ -17,6 +17,7 @@ public class TicketsController {
 		System.out.println(req.getParameter("btn"));
 		System.out.println("help");
 		ERS_USERS em = (ERS_USERS) req.getSession().getAttribute("user");
+		System.out.println("in ticket controller" + em);
 		ERS_REIMBURSEMENT_DAO_IMPL ersReimDaoImpl = new ERS_REIMBURSEMENT_DAO_IMPL();
 		List<ERS_REIMBURSEMENT> ersReim = new ArrayList<ERS_REIMBURSEMENT>();
 		// ersReim = ersReimDaoImpl.selectById(Id);
@@ -35,7 +36,7 @@ public class TicketsController {
 		} else {
 			while (iterator.hasNext()) { // removes pending accounts
 				ERS_REIMBURSEMENT temp = iterator.next();
-				if (temp.getREIMB_STATUS_ID_FK() == 0) {
+				if (temp.getREIMB_STATUS_ID_FK() == 3) {
 					iterator.remove();
 				}
 			}
@@ -71,8 +72,10 @@ public class TicketsController {
 			} else {
 				System.out.println("inside else");
 				int temp3 = Integer.valueOf(temp2);
+				System.out.println("input id" + temp3);
 				while (iterator2.hasNext()) { // removes pending accounts
 					ERS_REIMBURSEMENT temp = iterator2.next();
+					System.out.println("authot " + temp.getREIMB_AUTHOR_FK());
 					if (temp.getREIMB_AUTHOR_FK() != temp3) {
 						iterator2.remove();
 					}
@@ -83,7 +86,6 @@ public class TicketsController {
 		System.out.println(em.getUSER_ROLE_ID_FK());
 		System.out.println("This is the erisReim" + ersReim);
 		req.getSession().setAttribute("pastTicket", ersReim);
-		System.out.println(em.getUSER_ROLE_ID_FK());
 		if (em.getUSER_ROLE_ID_FK() == 1) {
 			return "/PastReimbE.html";
 		} else {

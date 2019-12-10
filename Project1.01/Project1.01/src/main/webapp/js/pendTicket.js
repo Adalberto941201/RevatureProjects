@@ -1,19 +1,19 @@
 /**
  * 
  */
-let buttonTwo = document.getElementById('logOut');
-buttonTwo.addEventListener('click', logOutFunc);
-
-function logOutFunc() {
-	if (confirm('Are you sure you want to logout? You will be redirected to the main login page.')) {
-		document.getElementById("logOut").href = "http://localhost:9001/Project1Sadie/Login.html";
-		window.location.replace("Login.html");
-        // or
-        window.location.href = "/Login.html";
-	} else {
-		alert('you chose to stay logged in');
-	}
-}
+//let buttonTwo = document.getElementById('logOut');
+//buttonTwo.addEventListener('click', logOutFunc);
+//
+//function logOutFunc() {
+//	if (confirm('Are you sure you want to logout? You will be redirected to the main login page.')) {
+//		document.getElementById("logOut").href = "http://localhost:9001/Project1Sadie/Login.html";
+//		window.location.replace("Login.html");
+//        // or
+//        window.location.href = "/Login.html";
+//	} else {
+//		alert('you chose to stay logged in');
+//	}
+//}
 
 window.onload = function() {
 	let xhttp = new XMLHttpRequest();
@@ -103,20 +103,22 @@ function setValues(pendTicket) {
 		var td9 = document.createElement('td');
 		var text1 = document.createTextNode(pendTicket[i].reimb_ID);
 		var text2 = document.createTextNode(pendTicket[i].reimb_AMOUNT);
-		var text3 = document.createTextNode(date.getMonth() + "/"
-				+ date.getDay() + "/" + date.getFullYear());
-		var text4 = document.createTextNode(date2.getMonth() + "/"
-				+ date2.getDay() + "/" + date2.getFullYear());
+		var myDate = new Date (pendTicket[i].reimb_SUBMITTED);
+		var text3 = document.createTextNode(new Date (pendTicket[i].reimb_SUBMITTED).toISOString());
+		
+//		var text3 = document.createTextNode(myDate.getMonth() + "/"
+//				+ myDate.getDay() + "/" + myDate.getFullYear());
+		var text4 = document.createTextNode("Not Yet Resolved");
 		var text5 = document.createTextNode(pendTicket[i].reimb_DESCRIPTION);
 		var text6 = document.createTextNode(pendTicket[i].reimb_AUTHOR_FK);
 		var text7 = document.createTextNode(pendTicket[i].reimb_RESOLVER_FK);
 		var text8;
-		if (pendTicket[i].reimb_STATUS_ID_FK == 0) {
-			text8 = document.createTextNode("Pending");
+		if (pendTicket[i].reimb_STATUS_ID_FK == 2) {
+			text8 = document.createTextNode("Denied");
 		} else if (pendTicket[i].reimb_STATUS_ID_FK == 1) {
 			text8 = document.createTextNode("Approved");
 		} else {
-			text8 = document.createTextNode("Denied");
+			text8 = document.createTextNode("Pending");
 		}
 		var text9;
 		if (pendTicket[i].reimb_TYPE_ID_FK == 1) {

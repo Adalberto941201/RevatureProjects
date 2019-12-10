@@ -8,12 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import com.example.controller.LoginController;
 import com.example.controller.RequestHelper;
 import com.example.dao.ERS_REIMBURSEMENT_DAO;
 import com.pega.models.ERS_REIMBURSEMENT;
 import com.pega.models.ERS_USERS;
 
 public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
+	public final static Logger loggy = Logger.getLogger(ERS_REIMBURSEMENT_DAO_IMPL.class);
 
 	static {
 
@@ -40,10 +44,15 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement ps = conn.prepareStatement(
 					"INSERT INTO ERS_REIMBURSEMENT (REIMB_AMOUNT, REIMB_DESCRIPTION, REIMB_AUTHOR_FK, REIMB_STATUS_ID_FK, REIMB_TYPE_ID_FK) VALUES (?,?,?,?,?)");
+			System.out.println(reimb.getREIMB_AMOUNT());
+			System.out.println(reimb.getREIMB_DESCRIPTION());
+			System.out.println(reimb.getREIMB_AUTHOR_FK());
+			System.out.println(reimb.getREIMB_TYPE_ID_FK());
+			
 			ps.setFloat(1, reimb.getREIMB_AMOUNT());
 			ps.setString(2, reimb.getREIMB_DESCRIPTION());
 			ps.setInt(3, reimb.getREIMB_AUTHOR_FK());
-			ps.setInt(4, 0);
+			ps.setInt(4, 3);
 			ps.setInt(5, reimb.getREIMB_TYPE_ID_FK());
 			System.out.println("before execte in insert dao ");
 			insertedReimbs = ps.executeUpdate();
@@ -116,7 +125,7 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 			} else {
 				appDen="Denied";
 			}
-			RequestHelper.loggy.info("Ticket #"+ id+ "was updated to " + appDen + "by finance manager " + ResolverID);
+			loggy.info("Ticket #"+ id+ "was updated to " + appDen + "by finance manager " + ResolverID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -128,7 +137,7 @@ public class ERS_REIMBURSEMENT_DAO_IMPL implements ERS_REIMBURSEMENT_DAO {
 		List<ERS_REIMBURSEMENT> reimbs = new ArrayList<ERS_REIMBURSEMENT>();
 		System.out.println("im before the try get connection");
 		try (Connection con = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID_FK=0");
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID_FK=3");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				reimbs.add(new ERS_REIMBURSEMENT(rs.getInt("REIMB_ID"), rs.getInt("REIMB_AMOUNT"),

@@ -25,6 +25,7 @@ public class PendingTicketController {
 				}
 			}
 		}
+		System.out.println(ersReim.toString());
 		req.getSession().setAttribute("pendTick", ersReim);
 		return "/PastReimbE.html";
 	}

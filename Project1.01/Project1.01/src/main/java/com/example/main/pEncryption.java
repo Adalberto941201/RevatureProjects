@@ -1,91 +1,63 @@
 package com.example.main;
 
-import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.Optional;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
-import com.sun.mail.util.BASE64DecoderStream;
-import com.sun.mail.util.BASE64EncoderStream;
 
 public class pEncryption {
+	private static final SecureRandom RAND = new SecureRandom();
 
-	public static Cipher ecipher;
-	public static Cipher dcipher;
-	public static SecretKey key;
-	public static boolean createdKey = false;
-	// create new key
+	public static Optional<String>  generateSalt(final int length)  {
 
-	static {
-		if (createdKey == false) {
-			try {
-				System.out.println("created key");
-				key = KeyGenerator.getInstance("DES").generateKey();
-			} catch (Exception e) {
+		    if (length < 1) {
+		      System.err.println("error in generateSalt: length must be > 0");
+		      return Optional.empty();
+		    }
 
-			} finally {
-				createdKey = true;
-			}
-		} else {
-			System.out.println("running key generation block again");
-		}
-	}
+		    byte[] salt = new byte[length];
+		    RAND.nextBytes(salt);
 
-	public static void main(String[] args) {
+		    return Optional.of(Base64.getEncoder().encodeToString(salt));
+		  }
 
-	}
+	
+	  private static final int ITERATIONS = 65536;
+	  private static final int KEY_LENGTH = 512;
+	  private static final String ALGORITHM = "PBKDF2WithHmacSHA512";
 
-	public static String encrypt(String str) {
+	  public static Optional<String> hashPassword (String password, String salt) {
 
-		try {
-			System.out.println("keyShow: " + key);
-			byte[] utf8 = str.getBytes("UTF8");
+	    char[] chars = password.toCharArray();
+	    byte[] bytes = salt.getBytes();
 
-			byte[] enc = ecipher.doFinal(utf8);
-			enc = BASE64EncoderStream.encode(enc);
-			// encode to base64
+	    PBEKeySpec spec = new PBEKeySpec(chars, bytes, ITERATIONS, KEY_LENGTH);
 
-			return new String(enc);
-		}
+	    Arrays.fill(chars, Character.MIN_VALUE);
 
-		catch (Exception e) {
+	    try {
+	      SecretKeyFactory fac = SecretKeyFactory.getInstance(ALGORITHM);
+	      byte[] securePassword = fac.generateSecret(spec).getEncoded();
+	      return Optional.of(Base64.getEncoder().encodeToString(securePassword));
 
-			e.printStackTrace();
+	    } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+	      System.err.println("Exception encountered in hashPassword()");
+	      return Optional.empty();
 
-		}
-
-		return null;
-
-	}
-
-	public static String decrypt(String str) {
-
-		try {
-
-			// decode with base64 to get bytes
-			System.out.println("keyShow: " + key);
-			byte[] dec = BASE64DecoderStream.decode(str.getBytes());
-
-			byte[] utf8 = dcipher.doFinal(dec);
-
-			// create new string based on the specified charset
-
-			return new String(utf8, "UTF8");
-
-		}
-
-		catch (Exception e) {
-
-			e.printStackTrace();
-
-		}
-
-		return null;
-
-	}
-
+	    } finally {
+	      spec.clearPassword();
+	    }
+	  }
+	  
+	  public static boolean verifyPassword (String password, String key, String salt) {
+		    Optional<String> optEncrypted = hashPassword(password, salt);
+		    if (!optEncrypted.isPresent()) return false;
+		    return optEncrypted.get().equals(key);
+		  }
 }
